@@ -1,22 +1,28 @@
-# 多线头定格刺绣 · Multi-thread Embroidery
+# Multi-thread Embroidery
 
-一个 Codex 技能，用于制作多根彩色线头同时穿梭、交错收紧，逐步在布面绣成人物的微距定格视频。
+A Codex skill for macro stop-motion embroidery videos: multiple colored thread ends rise, cross, and tighten as a character gradually forms on fabric.
 
-核心是**多线头运动与针脚累积之间的关系**，而非单针描绘、扫描填色或成品图淡入。
+The defining effect is **the relationship between moving threads and accumulating stitches**, rather than a single needle drawing, a scanning reveal, or a finished image fading in.
 
-## 能做什么
+## What it does
 
-- 分别使用运动视频与人物图片约束动态和角色身份。
-- 提供多线头刺绣提示词骨架、生成路线和逐帧验收标准。
-- 记录异步任务，避免因等待或超时重复提交付费生成。
-- 识别粗毛线、整块填充、开头即成品、角色装饰残留等常见失败。
+- Uses motion footage and character images to constrain animation and identity separately.
+- Provides prompt templates, generation routes, and frame-based acceptance criteria.
+- Tracks asynchronous jobs to avoid duplicate paid submissions after delays or timeouts.
+- Identifies common failures: thick yarn, whole-region fills, an already finished opening, and leftover features from the original character.
 
-## 安装
+## Installation
 
-将本仓库下载或克隆到 Codex 的技能目录，目录名保留为 `multi-thread-embroidery`：
+Clone this repository into your Codex skills directory:
+
+```bash
+git clone https://github.com/fatelei/multi-thread-embroidery.git ~/.codex/skills/multi-thread-embroidery
+```
+
+If `CODEX_HOME` is set, use its `skills/` directory instead. If a skill with this name already exists, inspect it before updating to preserve local changes. Invoke the skill in a Codex session that has discovered it.
 
 ```text
-~/.codex/skills/multi-thread-embroidery/
+multi-thread-embroidery/
 ├── SKILL.md
 ├── agents/openai.yaml
 └── references/
@@ -25,33 +31,31 @@
     └── provider.md
 ```
 
-如果设置了 `CODEX_HOME`，使用该目录下的 `skills/`。已有同名技能时，先检查内容再更新，避免覆盖个人修改。安装后在能发现该技能的 Codex 会话中调用。
+## Usage
 
-## 使用
+Provide a reference video and a character image, then ask:
 
-提供参考视频及人物图，然后输入：
+> Use $multi-thread-embroidery to create a fine stop-motion embroidery video of this character, following the reference video's interweaving and tightening threads. Generate one sample first and verify the progression from blank fabric to finished embroidery.
 
-> 使用 $multi-thread-embroidery，按这个视频的多线头交错收紧过程，制作这个人物的精细定格刺绣动画。先做一条样片，检查从空布到成品的过程。
+You can also provide only a motion reference and retain its character for a generative remaster.
 
-也可以只提供运动参考、保留同一角色，进行生成式重制。
+## Requirements
 
-## 运行条件
+This is a workflow skill, not a video model or standalone generator. The environment needs media inspection tools and an available video generation or editing service. The skill files alone cannot generate video.
 
-这是工作流技能，不包含视频模型或独立生成程序。执行环境需要媒体查看工具和可用的视频生成/编辑服务；只有技能文件不能生成视频。
+The validated workflow used qwen-mm-plugins media tools and HappyHorse video editing. Check current tool interfaces and model availability at execution time. Paid services require your own credentials and incur generation costs. Never commit API keys.
 
-历史验证使用了 qwen-mm-plugins 的媒体工具及 HappyHorse 视频编辑服务。工具接口和模型可用性由执行时确认。使用收费服务需要自行配置凭据并承担生成费用；不要把密钥提交到仓库。
+## Validated scope and limitations
 
-## 已验证范围与限制
+The workflow validated and accepted by the user is **a generative remaster of an input video that retains the same character**. It closely follows the source composition and motion; it is not generation from scratch.
 
-已验证并获得用户认可的是：**以原视频为输入、保留同一角色的生成式重制**。它高度沿用原片构图和运动，不等于从零生成。
+Reliable arbitrary character replacement has not been established. A detailed finished reference image can improve character recognition, but does not guarantee convincing multi-thread motion. Deliveries should disclose their generation route and remaining differences.
 
-任意角色替换尚未验证稳定成功。精细成品图可以改善人物辨识度，但不能保证动画出现真实的多线头穿梭。提供成品时应如实注明生成路线及剩余差距。
+## Files
 
-## 文件
+- [Skill instructions](SKILL.md): route selection, production, and verification.
+- [Prompt templates](references/prompt.md): same-character remastering and replacement constraints.
+- [Observed lessons](references/lessons.md): actual outcomes and limitations.
+- [Provider notes](references/provider.md): credentials, task recovery, and error handling.
 
-- [技能入口](SKILL.md)：路线选择、制作和验收。
-- [提示词骨架](references/prompt.md)：同角色重制与角色替换约束。
-- [实验经验](references/lessons.md)：各路线的实际效果与局限。
-- [服务操作注意](references/provider.md)：凭据、任务恢复和错误处理。
-
-本仓库仅包含技能文档与界面元数据，不附带原视频、角色素材、生成成片、账户配置或密钥。
+This repository contains only skill documentation and interface metadata. It does not include source videos, character artwork, generated clips, account configuration, or credentials.

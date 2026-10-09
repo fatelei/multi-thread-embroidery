@@ -1,22 +1,22 @@
-# 视频服务操作注意
+# Video provider notes
 
-先检查当前工具清单与 schema，不假定某插件、模型或参数仍可用。历史使用的是 qwen-mm-plugins-video-edit 的 HappyHorse video_edit；具体支持范围以后以现有工具或官方文档为准。
+Check current tools and schemas before assuming a plugin, model, or parameter is available. The historical workflow used HappyHorse video_edit through qwen-mm-plugins-video-edit. Current tools or official documentation determine supported behavior at execution time.
 
-## 配置和调用
+## Configuration and requests
 
-- 优先使用可调用的生成工具。历史插件从环境变量或 `~/.qwen-mm-plugins/config` 读取 `DASHSCOPE_API_KEY`；绝不把密钥放入提示词、技能、日志或输出。需要凭据时引导本地配置，不要求发到聊天。
-- 该插件曾缓存启动时的空配置。文件存在而工具仍报缺失时，检查其加载机制；可重载插件，或在权限允许且接口经过核实后用独立进程调用同一服务。不要反复索要密钥或改动无关设置。
-- 直接调用时从环境/配置读取密钥，仅作为鉴权头发送到已核实的服务地址，不输出头部。请求联网或写配置权限遵循运行环境的要求。
-- 检查模型要求的媒体类型、尺寸、时长和大小。历史 video-edit 接受过 data URL 视频输入，但这不是其他模型或未来版本的保证。不要为方便而把用户视频上传至任意第三方文件站。
+- Prefer an available generation tool. The historical plugin read `DASHSCOPE_API_KEY` from the environment or `~/.qwen-mm-plugins/config`. Never place credentials in prompts, skills, logs, or deliverables. Ask for local configuration rather than requesting secrets in chat.
+- The plugin once cached an empty configuration at startup. If the file exists but the tool reports missing credentials, inspect its loading behavior. Reload the plugin, or use a separate process to call the same verified service when permissions allow. Do not repeatedly request a key or change unrelated settings.
+- Direct calls should read the key from the environment or configuration and send it only as an authentication header to the verified provider endpoint. Do not print headers. Follow the runtime's network and configuration-write permission requirements.
+- Check the model's media types, dimensions, duration, and size limits. The historical video-edit endpoint accepted video data URLs; this is not a guarantee for other models or future versions. Do not upload private footage to arbitrary file-hosting services for convenience.
 
-## 任务和错误
+## Jobs and errors
 
-- 提交成功立即持久化 task_id，然后轮询同一 ID。保存脱敏提示词、模型、参数、状态和本地结果路径。超时或网络中断先恢复已有任务，不盲目重提收费任务。
-- 只有 SUCCEEDED 且文件成功保存后才进行画面验收；成功状态不等于达到用户目标。
-- `Arrearage`：账户余额/账单状态问题，停止并告知。用户确认处理后，确认旧任务未创建或已经失败，再恢复提交。
-- `IPInfringementSuspect`：如实报告服务拒绝，不能据此自行作法律判断。不要通过隐去角色身份、改写伪装或频繁重试来绕开拒绝。用户明确请求原样重试时可作一次，并报告实际结果。
-- 其他失败：区分鉴权、参数错误、服务故障；确定失败点后再修正。没有明确任务状态时，不能把“没拿到结果”当作“没收费、没创建”。
+- Persist the task ID immediately after submission and poll the same job. Save sanitized prompts, model, parameters, status, and local result paths. Recover an existing job after a timeout or interruption instead of blindly creating another paid job.
+- Inspect the footage only after SUCCEEDED and a successful download. Job success does not establish that the user's visual goal was met.
+- `Arrearage`: account balance or billing issue. Stop and report it. After the user confirms resolution, verify that the prior job was never created or has failed before submitting again.
+- `IPInfringementSuspect`: report the provider's rejection accurately without making your own legal determination. Do not conceal identity, disguise prompts, or repeatedly retry to evade the rejection. If the user explicitly requests an unchanged retry, make one attempt and report its actual result.
+- Other failures: distinguish authentication, invalid parameters, and service failures before correcting them. Without a known job status, lack of a result does not establish that no job was created or no charge occurred.
 
-## 交付
+## Delivery
 
-临时签名 URL 不作为永久交付链接；下载到任务输出目录并预览实际文件。保留原片音轨需有明确参数或后期处理并验证。若无音轨则披露，不能暗称保留成功。
+Temporary signed URLs are not permanent deliverable links. Download the result into the task's output directory and preview the actual file. Preserving source audio requires an explicit generation setting or post-processing, followed by verification. Disclose missing audio rather than claiming it was retained.

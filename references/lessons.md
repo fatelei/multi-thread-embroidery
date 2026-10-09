@@ -1,15 +1,15 @@
-# 验证过的经验与局限
+# Observed lessons and limitations
 
-来自一次用户确认满意的工作流，不代表模型性能保证。
+These observations come from a workflow with a user-accepted result. They are not guarantees of model performance.
 
-| 尝试 | 观察 | 可复用判断 |
+| Attempt | Observation | Reusable lesson |
 |---|---|---|
-| 纯文字生成明日香刺绣 | 粗毛线、泛用Q版脸、单针填色 | 文本同时约束身份、材质、复杂运动不稳定 |
-| 先做准确精细成品图，再参考图生成视频 | 静态身份明显改善；动态仍有宽片针脚、大片填充 | 成品图验证身份，不能代替运动约束 |
-| 原视频加成品图换角色 | 保留多线头，但开头已成品且残留原熊帽元素 | 检查完成度和原角色残留；不能只看末帧 |
-| 原视频加角色设定图换角色 | 任务以 IPInfringementSuspect 被拒绝，原样重试也失败 | 该路线未验证成功，不推断无法合法制作该角色，也不继续盲重试 |
-| 原视频同角色生成式重制 | 空布、多色线圈、多点累积保留，用户认可风格 | 这是可靠程度最高的已验证起点；本质仍高度沿用原片 |
+| Text-only Asuka embroidery generation | Thick yarn, generic chibi face, single-needle filling | Text alone did not reliably constrain identity, material, and complex motion together |
+| Accurate fine-embroidery still followed by reference-image video generation | Still-image identity improved; animation retained wide stitches and large-area filling | A finished still can validate identity but cannot replace motion guidance |
+| Source video plus finished still for character replacement | Multiple threads survived, but the portrait was complete at the opening and original bear-hat features remained | Check completion progress and residual source features, not just the last frame |
+| Source video plus character artwork for replacement | Rejected with IPInfringementSuspect; an unchanged retry also failed | This route was not validated; do not infer a legal conclusion or keep retrying blindly |
+| Same-character generative remaster of the source video | Blank opening, colored loops, and local accumulation survived; the user accepted the style | Strongest validated starting point, but still closely derived from the source |
 
-被接受版本仍有次要差距：刺绣人物未保留卡片上的举手姿势；结尾残留白线尾；叠图与布面景深不同。用户接受的是整体风格，不意味着未来项目可以忽略这些检查。
+The accepted version had minor differences: the embroidered character did not retain the reference card's raised-hand pose, a white thread tail remained at the end, and the overlay's depth of field differed from the fabric. Acceptance of the overall style does not mean future projects may skip these checks.
 
-不能把“接口成功”“包含针线”“结尾像人物”当作复刻完成。最有区分度的是中段多线头的空间运动、收紧动作与局部成形之间的关系。
+A successful API response, the presence of needles and thread, or a recognizable final portrait does not prove recreation success. The most distinguishing evidence is the relationship between spatial thread motion, tightening, and local assembly in the middle of the clip.

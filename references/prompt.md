@@ -1,17 +1,17 @@
-# 提示词骨架
+# Prompt templates
 
-根据实际素材替换花括号；只发送当前路线需要的内容。不要求固定数量线头，而要求中段明显多根同时存在。
+Replace braces with details from the actual footage. Send only the sections needed for the selected route. Require visibly concurrent threads in the middle of the clip rather than a fixed thread count.
 
-## 同角色视频重制（已验证路线）
+## Same-character video remaster: validated route
 
-将输入视频重制为真实微距定格刺绣短片，保持{人物特征}、原片布料、光照、景深和镜头节奏。逐时刻保持原片刺绣完成度：开头主区域是空白亚麻布；继而零星针脚和自由线头出现；中段形成半成品；最后收线展示。
+Remaster the input video as a realistic macro stop-motion embroidery short. Preserve {character features}, the original fabric, lighting, depth of field, and camera rhythm. Preserve the source's completion progress at each moment: the main area begins as blank linen, then sparse stitches and free thread ends appear, followed by partial embroidery, final tightening, and a finished reveal.
 
-保留原片许多根独立的{颜色}细丝线：它们从多个分散布孔同时冒出，在布面上方拱起、交错、弯曲，异步拉紧并穿回布底，在各处留下短针脚。前景和不同深度都有松弛线圈。局部图案随各自线圈收紧而累积，不是一根针扫描，也不是成片填色。使用密集方向性缎面针脚，贴布浅浮雕，不是粗毛线、编绳、纸片或光滑印刷。最后线尾陆续收紧，留出成品展示。{按范围保留或修改卡片、文字、音轨。}
+Preserve the many independent thin {colors} silk threads in the source. They emerge simultaneously from separate holes, arch above the fabric, cross and bend, tighten asynchronously, and pass back through the fabric, leaving short stitches at multiple locations. Loose loops occupy the foreground and different depths. Local parts of the image accumulate as their respective loops tighten; this is not a scanning needle or whole-region fill. Use dense directional satin stitches with shallow relief close to the cloth, not thick yarn, braids, paper strips, or smooth printing. Thread tails tighten in succession at the end, leaving time to view the finished embroidery. {Preserve or modify cards, text, and audio within the requested scope.}
 
-## 换角色的附加约束（需要样片验证）
+## Additional constraints for character replacement: sample validation required
 
-参考角色图只约束身份：{脸型、发型、发饰、服装、姿势}。完全替换原人物的{需移除特征}，不得残留。角色图不是开场画面；只有原视频该处已经绣出的区域才允许出现新人物针脚，未绣区域保持空布。保持所有自由线头的空间轨迹与多点收紧节奏。
+The character reference constrains identity only: {face shape, hair, accessories, clothing, pose}. Completely replace the original character's {features to remove}, leaving no remnants. The character image is not the opening frame. New character stitches may appear only where the source video has already formed embroidery at that moment; unfinished regions remain bare cloth. Preserve all free-thread trajectories and the rhythm of tightening at multiple locations.
 
-## 8 秒节奏示例
+## Example timing for an eight-second clip
 
-仅当与原片接近时采用：0–0.5秒空布；0.5–2秒线头和轮廓；2–5.5秒多处同时绣制且线圈最丰富；5.5–6.5秒收尾；6.5–8秒展示。原片时间结构优先，不用此示例覆盖用户指定节奏。
+Use only if compatible with the source: 0–0.5 seconds blank fabric; 0.5–2 seconds threads and outlines; 2–5.5 seconds concurrent stitching with the richest loop activity; 5.5–6.5 seconds finishing; 6.5–8 seconds reveal. The source's structure takes precedence, and this example does not override user-specified pacing.
