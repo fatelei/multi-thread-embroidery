@@ -1,0 +1,4 @@
+interface:
+  display_name: "多线头定格刺绣"
+  short_description: "复刻多色线头交错收紧、从空白布面逐渐绣成人物的微距定格视频"
+  default_prompt: "使用 $multi-thread-embroidery，按我提供的视频与人物图制作多线头交错收紧、逐步成形的精细定格刺绣视频。"
