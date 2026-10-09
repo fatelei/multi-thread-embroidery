@@ -43,7 +43,7 @@ You can also provide only a motion reference and retain its character for a gene
 
 This is a workflow skill, not a video model or standalone generator. The environment needs media inspection tools and an available video generation or editing service. The skill files alone cannot generate video.
 
-The validated workflow used qwen-mm-plugins media tools and HappyHorse video editing. Check current tool interfaces and model availability at execution time. Paid services require your own credentials and incur generation costs. Never commit API keys.
+The validated workflow used [qwen-mm-plugins media tools](https://github.com/QwenLM/Qwen-MM-Plugins) and [HappyHorse video editing](https://help.aliyun.com/en/model-studio/happyhorse-video-edit-api-reference). Check current tool interfaces and model availability at execution time. Paid services require your own credentials and incur generation costs. Never commit API keys.
 
 ## Validated scope and limitations
 
